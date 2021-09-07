@@ -72,6 +72,11 @@ func Dump(n int) error {
 }
 
 // handle – вспомогательная функция Dump
+/*
+ если ответы [https://api.chucknorris.io/jokes/random?category={category}]
+ 3 раза(AmountReq) одинаковые, то функция прекращает свою работу, несмотря на флаг -n
+ – для предотвращения залипания, в некоторых категориях шуток может быть меньше чем {-n}
+*/
 func handle(wg *sync.WaitGroup, el string, n int) {
 	defer wg.Done()
 	file, err := os.OpenFile(el+".txt", os.O_CREATE|os.O_APPEND|os.O_RDWR, 0777)
