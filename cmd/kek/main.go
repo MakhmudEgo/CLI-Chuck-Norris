@@ -24,6 +24,9 @@ func main() {
 			log.Fatal(err)
 		}
 	case parse.Dump:
-
+		err := handler.Dump(d.Count)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }
